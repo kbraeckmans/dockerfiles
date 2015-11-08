@@ -1,6 +1,10 @@
 FROM debian:jessie
 MAINTAINER Kenny Braeckmans <kbraeckmans@zerolabs.org>
 
+RUN echo "deb http://deb.torproject.org/torproject.org jessie main" >> /etc/apt/sources.list
+RUN echo "deb-src http://deb.torproject.org/torproject.org jessie main" >> /etc/apt/sources.list
+RUN gpg --keyserver keys.gnupg.net --recv 886DDD89
+RUN gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
@@ -10,6 +14,8 @@ RUN apt-get update && apt-get install -y \
 	libxrender1 \
 	libxt6 \
 	xz-utils \
+  tor \
+  deb.torproject.org-keyring \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
