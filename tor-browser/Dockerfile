@@ -48,5 +48,5 @@ COPY local.conf /etc/fonts/local.conf
 WORKDIR $HOME
 USER user
 
-#ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
 CMD [ "/usr/local/bin/Browser/start-tor-browser" ]
